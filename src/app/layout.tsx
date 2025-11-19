@@ -29,7 +29,11 @@ export const metadata: Metadata = {
     "eventos corporativos",
   ],
   icons: {
-    icon: "/favicon.png",
+    icon: [
+      { rel: "icon", url: "/favicon.png", type: "image/png", sizes: "32x32" },
+      { rel: "shortcut icon", url: "/favicon.png", type: "image/png" },
+    ],
+    apple: "/favicon.png",
   },
   openGraph: {
     type: "website",

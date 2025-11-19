@@ -72,7 +72,7 @@ export default function StatsSection() {
     },
     {
       label: 'Palestras Técnicas',
-      value: 70,
+      value: 20,
       iconSrc: '/icone2.png',
     },
     {

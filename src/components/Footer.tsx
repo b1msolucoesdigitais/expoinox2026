@@ -74,14 +74,32 @@ export default function Footer() {
             <Text fontSize="sm" textAlign={{ base: 'center', md: 'left' }}>
               © 2026 Expo Inox. Todos os direitos reservados.
             </Text>
-            <Text fontSize="sm" textAlign={{ base: 'center', md: 'right' }}>
-              Desenvolvido com 💜 por{' '}
-              <Link
-                href="https://b1m.digital"
-                isExternal
-                fontWeight="bold"
-              >
+            <Text
+              fontSize="sm"
+              textAlign={{ base: 'center', md: 'right' }}
+              display="flex"
+              alignItems="center"
+              justifyContent={{ base: 'center', md: 'flex-end' }}
+              gap={2}
+              flexWrap="wrap"
+            >
+              <span>Desenvolvido com 💜 por</span>
+              <Link href="https://b1m.digital" isExternal fontWeight="bold">
                 B1M
+              </Link>
+              <span>e hospedado por</span>
+              <Link
+                href="https://www.servla.com.br"
+                isExternal
+                display="inline-flex"
+                alignItems="center"
+              >
+                <Image
+                  src="/servla.svg"
+                  alt="Servla"
+                  h="14px"
+                  objectFit="contain"
+                />
               </Link>
             </Text>
           </Flex>
