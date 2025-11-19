@@ -29,13 +29,13 @@ export default function ContatoPage() {
             <Heading size="md" mt={4} color="brand.900">WhatsApp</Heading>
             <Text color="gray.600">Atendimento rápido</Text>
             <Link
-              href="https://wa.me/5531986900952"
+              href="https://wa.me/5531997658318"
               isExternal
               fontWeight="bold"
               fontSize="lg"
               color="brand.500"
             >
-              (31) 98690-0952
+              +55 31 99765-8318
             </Link>
           </Stack>
 

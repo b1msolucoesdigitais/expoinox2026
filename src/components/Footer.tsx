@@ -43,8 +43,8 @@ export default function Footer() {
             <Link href="mailto:diretoria@expoinox.com.br">
               diretoria@expoinox.com.br
             </Link>
-            <Link href="https://wa.me/5531986900952" isExternal display="inline-flex" alignItems="center" gap={2}>
-              <Icon as={FaWhatsapp} /> (31) 98690-0952
+            <Link href="https://wa.me/5531997658318" isExternal display="inline-flex" alignItems="center" gap={2}>
+              <Icon as={FaWhatsapp} /> +55 31 99765-8318
             </Link>
             <Text>Timóteo - MG</Text>
           </Stack>

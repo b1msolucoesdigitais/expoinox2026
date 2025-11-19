@@ -461,8 +461,8 @@ function AboutSection() {
               <Stack spacing={0} fontSize="sm" color="gray.700" textAlign={{ base: 'center', md: 'left' }}>
                 <Text fontWeight="bold">FALE COM A ORGANIZAÇÃO</Text>
                 <Text fontWeight="bold">
-                  <NextLink href="https://wa.me/5531986900952" target="_blank">
-                    (31) 98690-0952
+                  <NextLink href="https://wa.me/5531997658318" target="_blank">
+                    +55 31 99765-8318
                   </NextLink>
                 </Text>
               </Stack>
