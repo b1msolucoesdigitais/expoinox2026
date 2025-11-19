@@ -36,10 +36,10 @@ export default function Home() {
       <Box
         bg="brand.900"
         color="white"
-        py={{ base: 20, md: 32 }}
+        py={{ base: 12, md: 20 }}
         position="relative"
         overflow="hidden"
-        minH="600px"
+        minH="440px"
         display="flex"
         alignItems="center"
       >
@@ -158,6 +158,42 @@ export default function Home() {
               />
             </Box>
           </Stack>
+        </Container>
+      </Box>
+
+      {/* Seção de ingressos */}
+      <Box bg="brand.900" color="white" py={6}>
+        <Container maxW="container.xl">
+          <Flex
+            direction={{ base: 'column', md: 'row' }}
+            align="center"
+            justify="center"
+            gap={4}
+          >
+            <Stack spacing={1} align={{ base: 'center', md: 'flex-start' }} textAlign={{ base: 'center', md: 'left' }}>
+              <Heading size="md">
+                <Text as="span" color="brand.yellow400" fontWeight="bold">
+                  04 a 06 de Junho de 2026
+                </Text>
+              </Heading>
+              <Text fontSize="sm">
+                Garanta agora mesmo o seu ingresso de forma antecipada.
+              </Text>
+            </Stack>
+            <Button
+              size="lg"
+              colorScheme="yellow"
+              px={10}
+              onClick={() =>
+                window.open(
+                  'https://ticket.maisvip.com.br/loja/comprar/46/expoinox-2026',
+                  '_blank'
+                )
+              }
+            >
+              COMPRAR INGRESSOS
+            </Button>
+          </Flex>
         </Container>
       </Box>
 
@@ -416,7 +452,7 @@ function AboutSection() {
             <Stack direction={{ base: 'column', md: 'row' }} spacing={6} pt={4} align="center">
               <Button
                 as={NextLink}
-                href="/a-feira"
+                href="/expoinox-2026"
                 colorScheme="brand"
                 size="lg"
               >
@@ -424,7 +460,11 @@ function AboutSection() {
               </Button>
               <Stack spacing={0} fontSize="sm" color="gray.700" textAlign={{ base: 'center', md: 'left' }}>
                 <Text fontWeight="bold">FALE COM A ORGANIZAÇÃO</Text>
-                <Text fontWeight="bold">(31) 98690-0952</Text>
+                <Text fontWeight="bold">
+                  <NextLink href="https://wa.me/5531986900952" target="_blank">
+                    (31) 98690-0952
+                  </NextLink>
+                </Text>
               </Stack>
             </Stack>
           </Stack>
