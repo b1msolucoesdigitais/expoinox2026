@@ -3,6 +3,15 @@
 import { Box, Container, Stack, Text, Heading, SimpleGrid, Icon, AspectRatio, Link } from "@chakra-ui/react"
 import PageHeader from '@/components/PageHeader'
 import { FaWhatsapp, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa'
+import GenericForm, { FormField } from '@/components/GenericForm'
+
+const CONTACT_FORM_FIELDS: FormField[] = [
+  { name: 'name', label: 'Nome Completo', type: 'text', required: true },
+  { name: 'email', label: 'E-mail', type: 'email', required: true },
+  { name: 'phone', label: 'Telefone / WhatsApp', type: 'tel', required: true, placeholder: '(XX) XXXXX-XXXX' },
+  { name: 'subject', label: 'Assunto', type: 'text', required: true },
+  { name: 'message', label: 'Mensagem', type: 'textarea', required: true },
+]
 
 export default function ContatoPage() {
   return (
@@ -46,6 +55,14 @@ export default function ContatoPage() {
 
         </SimpleGrid>
 
+        {/* Form Section */}
+        <Box maxW="3xl" mx="auto" w="full" mt={16}>
+          <Heading size="lg" mb={6} textAlign="center" color="brand.900">Envie uma mensagem</Heading>
+          <Box p={8} bg="white" rounded="xl" boxShadow="lg" border="1px solid" borderColor="gray.200">
+            <GenericForm fields={CONTACT_FORM_FIELDS} formId="contato" submitLabel="Enviar Mensagem" />
+          </Box>
+        </Box>
+
         {/* Mapa da Praça 1º de Maio */}
         <Box mt={16}>
           <Heading size="lg" mb={4} color="brand.900" textAlign={{ base: "center", md: "left" }}>
@@ -67,4 +84,3 @@ export default function ContatoPage() {
     </Box>
   )
 }
-

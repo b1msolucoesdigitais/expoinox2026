@@ -27,7 +27,9 @@ interface GenericFormProps {
   formId: string // To identify which form was submitted
 }
 
-const WEBHOOK_URL = process.env.NEXT_PUBLIC_FORMS_WEBHOOK_URL
+// Endpoint interno da aplicação que fará o proxy para o webhook externo,
+// evitando problemas de CORS no navegador.
+const FORMS_API_ENDPOINT = '/api/forms'
 
 export default function GenericForm({
   fields,
@@ -43,10 +45,6 @@ export default function GenericForm({
 
     const form = e.target as HTMLFormElement
     try {
-      if (!WEBHOOK_URL) {
-        throw new Error('Webhook não configurado. Defina NEXT_PUBLIC_FORMS_WEBHOOK_URL no .env.')
-      }
-
       const formData = new FormData(form)
       const payload: Record<string, unknown> = { formId }
 
@@ -65,14 +63,16 @@ export default function GenericForm({
         }
       })
 
-      const response = await fetch(WEBHOOK_URL, {
+      const response = await fetch(FORMS_API_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       })
 
       if (!response.ok) {
-        throw new Error(`Falha ao enviar formulário. Status: ${response.status}`)
+        const errorData = await response.json().catch(() => ({}))
+        console.error('Erro detalhado:', errorData)
+        throw new Error(errorData.message || `Falha ao enviar: ${response.status}`)
       }
 
       toast({
@@ -100,6 +100,21 @@ export default function GenericForm({
     }
   }
 
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = e.target.value.replace(/\D/g, '')
+    if (value.length > 11) value = value.slice(0, 11)
+
+    if (value.length > 2) {
+      value = `(${value.slice(0, 2)}) ${value.slice(2)}`
+    }
+    if (value.length > 9) {
+      // (XX) XXXXX...
+      value = `${value.slice(0, 9)}-${value.slice(9)}`
+    }
+
+    e.target.value = value
+  }
+
   return (
     <Stack as="form" spacing={4} onSubmit={handleSubmit}>
       {fields.map((field) => (
@@ -116,7 +131,13 @@ export default function GenericForm({
           ) : field.type === 'textarea' ? (
             <Textarea name={field.name} placeholder={field.placeholder} />
           ) : (
-            <Input name={field.name} type={field.type} placeholder={field.placeholder} />
+            <Input
+              name={field.name}
+              type={field.type === 'tel' ? 'tel' : field.type}
+              placeholder={field.placeholder}
+              onChange={field.type === 'tel' ? handlePhoneChange : undefined}
+              maxLength={field.type === 'tel' ? 15 : undefined}
+            />
           )}
         </FormControl>
       ))}
