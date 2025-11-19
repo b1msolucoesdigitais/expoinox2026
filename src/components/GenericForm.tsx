@@ -27,7 +27,13 @@ interface GenericFormProps {
   formId: string // To identify which form was submitted
 }
 
-export default function GenericForm({ fields, submitLabel = 'Enviar', formId }: GenericFormProps) {
+const WEBHOOK_URL = process.env.NEXT_PUBLIC_FORMS_WEBHOOK_URL
+
+export default function GenericForm({
+  fields,
+  submitLabel = 'Enviar',
+  formId,
+}: GenericFormProps) {
   const toast = useToast()
   const [isLoading, setIsLoading] = useState(false)
 
@@ -35,22 +41,63 @@ export default function GenericForm({ fields, submitLabel = 'Enviar', formId }: 
     e.preventDefault()
     setIsLoading(true)
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-
-    setIsLoading(false)
-    toast({
-      title: 'Formulário enviado!',
-      description: 'Recebemos seus dados e entraremos em contato em breve.',
-      status: 'success',
-      duration: 5000,
-      isClosable: true,
-      position: 'top',
-    })
-    
-    // Reset form (optional, requires state management for values if we want to clear inputs)
     const form = e.target as HTMLFormElement
-    form.reset()
+    try {
+      if (!WEBHOOK_URL) {
+        throw new Error('Webhook não configurado. Defina NEXT_PUBLIC_FORMS_WEBHOOK_URL no .env.')
+      }
+
+      const formData = new FormData(form)
+      const payload: Record<string, unknown> = { formId }
+
+      formData.forEach((value, key) => {
+        // Se o campo já existir, converte para array (caso haja múltiplos valores)
+        if (payload[key] !== undefined) {
+          const current = payload[key]
+          if (Array.isArray(current)) {
+            current.push(value)
+            payload[key] = current
+          } else {
+            payload[key] = [current, value]
+          }
+        } else {
+          payload[key] = value
+        }
+      })
+
+      const response = await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+
+      if (!response.ok) {
+        throw new Error(`Falha ao enviar formulário. Status: ${response.status}`)
+      }
+
+      toast({
+        title: 'Formulário enviado!',
+        description: 'Recebemos seus dados e entraremos em contato em breve.',
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
+        position: 'top',
+      })
+
+      form.reset()
+    } catch (error) {
+      console.error(error)
+      toast({
+        title: 'Não foi possível enviar o formulário.',
+        description: 'Tente novamente em alguns instantes.',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+        position: 'top',
+      })
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
