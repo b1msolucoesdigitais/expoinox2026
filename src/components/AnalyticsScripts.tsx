@@ -33,11 +33,7 @@ export default function AnalyticsScripts() {
       */}
 
       {/* Meta Pixel (Facebook) */}
-      {/*
-      <Script
-        id="meta-pixel"
-        strategy="afterInteractive"
-      >
+      <Script id="meta-pixel" strategy="afterInteractive">
         {`!function(f,b,e,v,n,t,s)
         {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
         n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -46,10 +42,20 @@ export default function AnalyticsScripts() {
         t.src=v;s=b.getElementsByTagName(e)[0];
         s.parentNode.insertBefore(t,s)}(window, document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', 'PIXEL_ID_AQUI');
+        fbq('init', '641750785344051');
         fbq('track', 'PageView');`}
       </Script>
-      */}
+
+      {/* Meta Pixel noscript fallback */}
+      <noscript>
+        <img
+          height="1"
+          width="1"
+          style={{ display: 'none' }}
+          src="https://www.facebook.com/tr?id=641750785344051&ev=PageView&noscript=1"
+          alt=""
+        />
+      </noscript>
 
       {/* Outros scripts de terceiros podem ser adicionados aqui */}
     </>
