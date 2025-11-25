@@ -77,7 +77,7 @@ export default function StatsSection() {
     },
     {
       label: 'expositores',
-      value: 300,
+      value: 125,
       iconSrc: '/icone3.png',
       prefix: '+',
     },
