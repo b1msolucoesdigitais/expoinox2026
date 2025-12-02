@@ -22,11 +22,12 @@ import {
 import NextLink from 'next/link'
 import { FaPlay } from 'react-icons/fa'
 import StatsSection from '@/components/StatsSection'
+import NewsSection from '@/components/NewsSection'
 
 export default function Home() {
   // State for map modal
   const { isOpen: isMapOpen, onOpen: onMapOpen, onClose: onMapClose } = useDisclosure()
-  
+
   // State for video modal
   const { isOpen: isVideoOpen, onOpen: onVideoOpen, onClose: onVideoClose } = useDisclosure()
 
@@ -121,8 +122,8 @@ export default function Home() {
             </Stack>
 
             {/* Right Content - Play Button */}
-            <Box 
-              as="button" 
+            <Box
+              as="button"
               onClick={onVideoOpen}
               position="relative"
               display="flex"
@@ -202,6 +203,9 @@ export default function Home() {
 
       {/* Animated Numbers Section */}
       <StatsSection />
+
+      {/* News Section */}
+      <NewsSection />
 
       {/* Stats & Quick Links Grid */}
       <Box py={20} bg="gray.50">
