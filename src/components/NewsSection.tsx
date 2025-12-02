@@ -66,7 +66,7 @@ export default function NewsSection() {
                             ÚLTIMAS NOTÍCIAS
                         </Heading>
                         <Text fontSize="lg" color="gray.600">
-                            Fique por dentro de tudo o que acontece na Expo Inox.
+                            Fique por dentro de tudo o que acontece na feira e do mundo do Inox...
                         </Text>
                     </Box>
 
