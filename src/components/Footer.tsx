@@ -2,10 +2,12 @@
 
 import { Box, Container, Stack, Text, Link, SimpleGrid, Icon, Image, Flex } from '@chakra-ui/react'
 import { FaInstagram, FaWhatsapp } from 'react-icons/fa'
+import SponsorsSection from './SponsorsSection'
 
 export default function Footer() {
   return (
     <Box bg="brand.900" color="gray.200">
+      <SponsorsSection />
       <Container as={Stack} maxW={'6xl'} py={10}>
         <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={8}>
           <Stack align={'flex-start'}>
