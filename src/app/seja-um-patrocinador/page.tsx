@@ -16,23 +16,22 @@ const FORM_FIELDS: FormField[] = [
 export default function SejaUmPatrocinadorPage() {
   return (
     <Box>
-      <PageHeader 
-        title="Seja um Patrocinador" 
-        subtitle="Associe sua marca ao maior evento de negócios da região." 
+      <PageHeader
+        title="Seja um Patrocinador"
+        subtitle="Associe sua marca ao maior evento de negócios da região."
       />
-      
+
       <Container maxW="container.xl" py={16}>
         <Stack spacing={12} direction={{ base: 'column', lg: 'row' }}>
           <Box flex="1">
             <Heading size="lg" mb={6} color="brand.900">Por que patrocinar?</Heading>
             <Stack spacing={4} fontSize="lg" color="gray.700">
               <Text>
-                A Expo Inox oferece visibilidade única para sua marca, conectando-a a um público 
+                A Expo Inox oferece visibilidade única para sua marca, conectando-a a um público
                 qualificado e decisor.
               </Text>
               <Text>
-                Temos diversas cotas de patrocínio (Diamante, Ouro, Prata, Bronze) que se adequam 
-                aos objetivos de marketing da sua empresa.
+                Temos cotas de patrocínio que se adequam aos objetivos de marketing da sua empresa.
               </Text>
               <Text fontWeight="bold" color="brand.600">
                 Entre em contato conosco para receber o Mídia Kit completo.
