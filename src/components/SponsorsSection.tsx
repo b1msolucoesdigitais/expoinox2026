@@ -57,7 +57,12 @@ export default function SponsorsSection() {
                         {/* Ouro - Takes more space */}
                         <Box flex={{ base: 'auto', md: 2 }} w="full">
                             <SponsorGroup title="Patrocínio Ouro">
-                                <Text fontWeight="bold" color="gray.400" fontSize="lg">GRUPO CONECTTA</Text>
+                                <Image
+                                    src="/logos/grupoconnectta.jpeg"
+                                    alt="GRUPO CONECTTA"
+                                    h="50px"
+                                    objectFit="contain"
+                                />
                                 <Image
                                     src="/logos/unimedvaledoaco.png"
                                     alt="Unimed Vale do Aço"
